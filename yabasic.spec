@@ -14,6 +14,7 @@ BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	libtool
 BuildRequires:	XFree86-devel
 BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -54,10 +55,10 @@ install -d $RPM_BUILD_ROOT{%{_mandir}/pl/man1,%{_sysconfdir}}
 
 gzip -9nf AUTHORS NEWS README
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %files
 %defattr(644,root,root,755)
 %doc *.gz *.htm
 %attr(755,root,root) %{_bindir}
-
-%clean
-rm -rf $RPM_BUILD_ROOT
