@@ -1,23 +1,61 @@
-Summary: Small basic interpreter with simple graphics and printing
-Name: yabasic
-Version: 2.63
-Release: 1
-Copyright: GPL
-Group: Development/Languages
-Vendor: Marc-Oliver Ihm
-Source: yab.tar.Z
+Summary:	Small basic interpreter with printing and graphics
+Summary(pl):	Niewielki interpretator basica z obs³ug± grafiki
+Name:		yabasic
+Version:	2.671
+Release:	14
+License:	Public Domain
+Group:		Development/Languages
+Group(de):	Entwicklung/Sprachen
+Group(pl):	Programowanie/Jêzyki
+Source0:	http://www.yabasic.de/download/%{name}-%{version}.tar.gz
+Patch0:		%{name}-make.patch
+URL:		http://www.yabasic.de/
+BuildRequires:	bison
+BuildRequires:	flex
+BuildRequires:	automake
+BuildRequires:	autoconf
+BuildRequires:	XFree86-devel
+BuildRequires:	ncurses-devel
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
 %description
 Yabasic implements the most common and simple elements of the basic
-langugage; It comes with for-loops and goto with while-loops and procedures. 
-Yabasic does monochrome line grafics, printing comes with no extra effort. 
-Yabasic runs under Unix and Windows; it is small (less than 200KB) and free. 
-Support and the latest version is available at www.yabasic.de
+langugage; It comes with for-loops and goto with while-loops and
+procedures. Yabasic does monochrome line grafics, printing comes with
+no extra effort. Yabasic runs under Unix and Windows; it is small
+(less than 200KB) and free.
+
+%description -l pl
+Yabasic implementuje najbardziej popularne i proste elementy jêzyka
+basic. Yabasic obs³uguje pêtle-for, instrukcje goto z pêtlami-while
+oraz procedurami. Yabasic obs³uguje monochromatyczn± liniow± grafikê
+oraz drukowanie.
+
 %prep
-%setup
+%setup  -q
+%patch0 -p1
+
 %build
-./runme
+automake -a -c -i
+aclocal
+autoheader
+autoconf
+%configure
+%{__make}
+
 %install
-make install
+rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_mandir}/pl/man1,%{_sysconfdir}}
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+gzip -9nf AUTHORS NEWS README
+
 %files
-/usr/bin/yabasic
-/usr/doc/yabasic/yabasic.htm
+%defattr(644,root,root,755)
+%doc *.gz *.htm
+%attr(755,root,root) %{_bindir}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
