@@ -37,10 +37,10 @@ oraz drukowanie.
 %build
 rm -f missing
 %{__libtoolize}
-aclocal
-autoheader
+%{__aclocal}
+%{__autoheader}
 %{__autoconf}
-automake -a -c -i
+%{__automake} -i
 %configure
 %{__make}
 
