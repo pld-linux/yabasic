@@ -51,12 +51,10 @@ install -d $RPM_BUILD_ROOT{%{_mandir}/pl/man1,%{_sysconfdir}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf AUTHORS NEWS README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz *.htm
+%doc AUTHORS NEWS README *.htm
 %attr(755,root,root) %{_bindir}/*
