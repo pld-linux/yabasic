@@ -1,0 +1,52 @@
+diff -urN yabasic-2.671.org/acconfig.h yabasic-2.671/acconfig.h
+--- yabasic-2.671.org/acconfig.h	Thu Feb 22 09:30:07 2001
++++ yabasic-2.671/acconfig.h	Thu Feb 22 09:36:39 2001
+@@ -9,6 +9,9 @@
+ /* defined, if ncurses.h is present */
+ #undef HAVE_NCURSES_HEADER
+ 
++/* define if ncurses/ncurses.h present */
++#undef HAVE_NCURSES_NCURSES_HEADER
++
+ @BOTTOM@
+ 
+ /* build architecture */
+diff -urN yabasic-2.671.org/configure.in yabasic-2.671/configure.in
+--- yabasic-2.671.org/configure.in	Thu Feb 22 09:30:07 2001
++++ yabasic-2.671/configure.in	Thu Feb 22 09:31:34 2001
+@@ -27,6 +27,7 @@
+ 
+ dnl --- check for curses.h
+ AC_CHECK_HEADER(ncurses.h,AC_DEFINE(HAVE_NCURSES_HEADER))
++AC_CHECK_HEADER(ncurses/ncurses.h,AC_DEFINE(HAVE_NCURSES_NCURSES_HEADER))
+ AC_CHECK_HEADER(curses.h,AC_DEFINE(HAVE_CURSES_HEADER))
+ 
+ dnl --- check if curses is available ---
+diff -urN yabasic-2.671.org/graphic.c yabasic-2.671/graphic.c
+--- yabasic-2.671.org/graphic.c	Thu Feb 22 09:30:07 2001
++++ yabasic-2.671/graphic.c	Thu Feb 22 09:40:45 2001
+@@ -31,7 +31,7 @@
+ #ifndef YABASIC_INCLUDED
+ #include "yabasic.h"       /* all prototypes and structures */
+ #endif
+-#ifdef UNIX
++#ifdef HAVE_CURSES_HEADER
+ #include <curses.h>
+ #ifndef KEY_MAX
+ #define KEY_MAX 0777
+diff -urN yabasic-2.671.org/yabasic.h yabasic-2.671/yabasic.h
+--- yabasic-2.671.org/yabasic.h	Thu Feb 22 09:30:07 2001
++++ yabasic-2.671/yabasic.h	Thu Feb 22 09:38:53 2001
+@@ -101,8 +101,12 @@
+ #ifdef HAVE_NCURSES_HEADER
+ #include <ncurses.h>
+ #else
++#ifdef HAVE_NCURSES_NCURSES_HEADER
++#include <ncurses/ncurses.h>
++#else
+ #ifdef HAVE_CURSES_HEADER
+ #include <curses.h>
++#endif
+ #endif
+ #endif
+ #ifndef KEY_MAX
