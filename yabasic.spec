@@ -1,12 +1,12 @@
 Summary:	Small basic interpreter with printing and graphics
 Summary(pl):	Niewielki interpretator basica z obs³ug± grafiki
 Name:		yabasic
-Version:	2.722
+Version:	2.730
 Release:	1
 License:	Public Domain
 Group:		Development/Languages
 Source0:	http://www.yabasic.de/download/%{name}-%{version}.tar.gz
-# Source0-md5:	57544b9737ee2121c781dada3600487d
+# Source0-md5:	d12992bd7023813fb1e8b5091248fb4a
 Patch0:		%{name}-make.patch
 URL:		http://www.yabasic.de/
 BuildRequires:	bison

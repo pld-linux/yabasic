@@ -1,31 +1,18 @@
-diff -urN yabasic-2.671.org/acconfig.h yabasic-2.671/acconfig.h
---- yabasic-2.671.org/acconfig.h	Thu Feb 22 09:30:07 2001
-+++ yabasic-2.671/acconfig.h	Thu Feb 22 09:36:39 2001
-@@ -9,6 +9,9 @@
- /* defined, if ncurses.h is present */
- #undef HAVE_NCURSES_HEADER
- 
-+/* define if ncurses/ncurses.h present */
-+#undef HAVE_NCURSES_NCURSES_HEADER
-+
- @BOTTOM@
- 
- /* build architecture */
-diff -urN yabasic-2.671.org/configure.in yabasic-2.671/configure.in
---- yabasic-2.671.org/configure.in	Thu Feb 22 09:30:07 2001
-+++ yabasic-2.671/configure.in	Thu Feb 22 09:31:34 2001
-@@ -27,6 +27,7 @@
+diff -Naur yabasic-2.730.orig/configure.in yabasic-2.730/configure.in
+--- yabasic-2.730.orig/configure.in	2003-08-23 23:11:24.000000000 +0200
++++ yabasic-2.730/configure.in	2003-11-25 15:11:20.000000000 +0100
+@@ -31,6 +31,7 @@
  
  dnl --- check for curses.h
- AC_CHECK_HEADER(ncurses.h,AC_DEFINE(HAVE_NCURSES_HEADER))
-+AC_CHECK_HEADER(ncurses/ncurses.h,AC_DEFINE(HAVE_NCURSES_NCURSES_HEADER))
- AC_CHECK_HEADER(curses.h,AC_DEFINE(HAVE_CURSES_HEADER))
+ AC_CHECK_HEADER(ncurses.h,AC_DEFINE(HAVE_NCURSES_HEADER,1,[defined, if ncurses.h is present]))
++AC_CHECK_HEADER(ncurses/ncurses.h,AC_DEFINE(HAVE_NCURSES_NCURSES_HEADER,1,[defined, if ncurses/ncurses.h is present]))
+ AC_CHECK_HEADER(curses.h,AC_DEFINE(HAVE_CURSES_HEADER,1,[defined, if ncurses.h is present]))
  
  dnl --- check if curses is available ---
-diff -urN yabasic-2.671.org/graphic.c yabasic-2.671/graphic.c
---- yabasic-2.671.org/graphic.c	Thu Feb 22 09:30:07 2001
-+++ yabasic-2.671/graphic.c	Thu Feb 22 09:40:45 2001
-@@ -31,7 +31,7 @@
+diff -Naur yabasic-2.730.orig/graphic.c yabasic-2.730/graphic.c
+--- yabasic-2.730.orig/graphic.c	2003-01-25 23:13:57.000000000 +0100
++++ yabasic-2.730/graphic.c	2003-11-25 15:07:09.000000000 +0100
+@@ -26,7 +26,7 @@
  #ifndef YABASIC_INCLUDED
  #include "yabasic.h"       /* all prototypes and structures */
  #endif
@@ -34,10 +21,10 @@ diff -urN yabasic-2.671.org/graphic.c yabasic-2.671/graphic.c
  #include <curses.h>
  #ifndef KEY_MAX
  #define KEY_MAX 0777
-diff -urN yabasic-2.671.org/yabasic.h yabasic-2.671/yabasic.h
---- yabasic-2.671.org/yabasic.h	Thu Feb 22 09:30:07 2001
-+++ yabasic-2.671/yabasic.h	Thu Feb 22 09:38:53 2001
-@@ -101,8 +101,12 @@
+diff -Naur yabasic-2.730.orig/yabasic.h yabasic-2.730/yabasic.h
+--- yabasic-2.730.orig/yabasic.h	2003-08-23 23:14:02.000000000 +0200
++++ yabasic-2.730/yabasic.h	2003-11-25 15:07:09.000000000 +0100
+@@ -92,10 +92,14 @@
  #ifdef HAVE_NCURSES_HEADER
  #include <ncurses.h>
  #else
@@ -46,7 +33,9 @@ diff -urN yabasic-2.671.org/yabasic.h yabasic-2.671/yabasic.h
 +#else
  #ifdef HAVE_CURSES_HEADER
  #include <curses.h>
+ #endif
+ #endif
 +#endif
- #endif
- #endif
  #ifndef KEY_MAX
+ #define KEY_MAX 0777
+ #endif
