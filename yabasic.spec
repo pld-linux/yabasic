@@ -5,8 +5,6 @@ Version:	2.671
 Release:	15
 License:	Public Domain
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Source0:	http://www.yabasic.de/download/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
 URL:		http://www.yabasic.de/
