@@ -2,7 +2,7 @@ Summary:	Small basic interpreter with printing and graphics
 Summary(pl):	Niewielki interpretator basica z obs³ug± grafiki
 Name:		yabasic
 Version:	2.671
-Release:	14
+Release:	15
 License:	Public Domain
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
@@ -36,10 +36,12 @@ oraz drukowanie.
 %patch0 -p1
 
 %build
-automake -a -c -i
+rm -f missing
+libtoolize --copy --force
 aclocal
 autoheader
 autoconf
+automake -a -c -i
 %configure
 %{__make}
 
