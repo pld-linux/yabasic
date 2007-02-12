@@ -1,5 +1,5 @@
 Summary:	Small basic interpreter with printing and graphics
-Summary(pl.UTF-8):   Niewielki interpretator basica z obsługą grafiki
+Summary(pl.UTF-8):	Niewielki interpretator basica z obsługą grafiki
 Name:		yabasic
 Version:	2.751
 Release:	1
