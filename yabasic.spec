@@ -1,5 +1,5 @@
 Summary:	Small basic interpreter with printing and graphics
-Summary(pl):	Niewielki interpretator basica z obs³ug± grafiki
+Summary(pl.UTF-8):   Niewielki interpretator basica z obsÅ‚ugÄ… grafiki
 Name:		yabasic
 Version:	2.751
 Release:	1
@@ -25,10 +25,10 @@ procedures. Yabasic does monochrome line grafics, printing comes with
 no extra effort. Yabasic runs under Unix and Windows; it is small
 (less than 200KB) and free.
 
-%description -l pl
-Yabasic implementuje najbardziej popularne i proste elementy jêzyka
-basic. Yabasic obs³uguje pêtle-for, instrukcje goto z pêtlami-while
-oraz procedurami. Yabasic obs³uguje monochromatyczn± liniow± grafikê
+%description -l pl.UTF-8
+Yabasic implementuje najbardziej popularne i proste elementy jÄ™zyka
+basic. Yabasic obsÅ‚uguje pÄ™tle-for, instrukcje goto z pÄ™tlami-while
+oraz procedurami. Yabasic obsÅ‚uguje monochromatycznÄ… liniowÄ… grafikÄ™
 oraz drukowanie.
 
 %prep
