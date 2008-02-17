@@ -9,13 +9,13 @@ Source0:	http://www.yabasic.de/download/%{name}-%{version}.tar.gz
 # Source0-md5:	89b4ae8f01e04ad5417bc5d91601d822
 Patch0:		%{name}-make.patch
 URL:		http://www.yabasic.de/
-BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
+BuildRequires:	xorg-lib-libSM-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
